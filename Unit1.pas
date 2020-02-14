@@ -83,7 +83,7 @@ var
   str:string;
 begin
   ADOQuery1.SQL.Clear;
-
+  // вводим запрос
   str := 'update computers set MAC_address='''+Edit4.Text+''', InventoryNumber='+
   Edit5.Text+', Location='''+Edit6.Text+''', LastChanges=now() Where  ID='+DBLookupComboBox1.Text;
 
