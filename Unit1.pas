@@ -43,11 +43,20 @@ type
     DBLookupComboBox1: TDBLookupComboBox;
     DBLookupComboBox2: TDBLookupComboBox;
     Button3: TButton;
+    Edit7: TEdit;
+    Label8: TLabel;
+    Edit8: TEdit;
+    Label9: TLabel;
+    Label10: TLabel;
+    Button4: TButton;
+    Button5: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure DBLookupComboBox1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -68,7 +77,7 @@ begin
   // очищаем свойство sql от запросов
   ADOQuery1.SQL.Clear;
   // вводим запрос
-  str := 'insert into computers (MAC_address,InventoryNumber,Location,DateOfCreation,LastChanges) values('''+Edit1.Text+''','+Edit2.Text+','''+
+  str := 'insert into computers (MAC_address,IP,InventoryNumber,Location,DateOfCreation,LastChanges) values('''+Edit1.Text+''','''+Edit7.Text+''','+Edit2.Text+','''+
   Edit3.Text+''', now(), now() )';
 
   ADOQuery1.SQL.Add(str);
@@ -76,6 +85,8 @@ begin
   // перезапускаем таблицу
   ADOTableComp.close;
   ADOTableComp.open;
+
+  Edit1.Clear; Edit2.Clear; Edit3.Clear; Edit7.Clear;
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
@@ -84,7 +95,7 @@ var
 begin
   ADOQuery1.SQL.Clear;
   // вводим запрос
-  str := 'update computers set MAC_address='''+Edit4.Text+''', InventoryNumber='+
+  str := 'update computers set MAC_address='''+Edit4.Text+''', IP='''+Edit8.Text+''', InventoryNumber='+
   Edit5.Text+', Location='''+Edit6.Text+''', LastChanges=now() Where  ID='+DBLookupComboBox1.Text;
 
   ADOQuery1.SQL.Add(str);
@@ -107,11 +118,22 @@ begin
   ADOTableComp.open;
 end;
 
+procedure TForm1.Button4Click(Sender: TObject);
+begin
+  Edit1.Clear; Edit2.Clear; Edit3.Clear; Edit7.Clear;
+end;
+
+procedure TForm1.Button5Click(Sender: TObject);
+begin
+  Edit4.Clear; Edit5.Clear; Edit6.Clear; Edit8.Clear;
+end;
+
 procedure TForm1.DBLookupComboBox1Click(Sender: TObject);
 begin
   Edit4.Text:=ADOTableComp.FieldByName('MAC_address').AsString;
   Edit5.Text:=ADOTableComp.FieldByName('InventoryNumber').AsString;
   Edit6.Text:=ADOTableComp.FieldByName('Location').AsString;
+  Edit8.Text:=ADOTableComp.FieldByName('IP').AsString;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
