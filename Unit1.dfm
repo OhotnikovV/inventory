@@ -50,7 +50,7 @@ object Form1: TForm1
           Top = 1
           Width = 662
           Height = 269
-          ActivePage = TabSheet4
+          ActivePage = TabSheet3
           Align = alClient
           TabOrder = 0
           object TabSheet3: TTabSheet
@@ -230,7 +230,7 @@ object Form1: TForm1
     ConnectionString = 
       'Provider=MSDASQL.1;Password=1234;Persist Security Info=True;User' +
       ' ID=root;Extended Properties="Driver=MySQL ODBC 8.0 ANSI Driver;' +
-      'SERVER=localhost;UID=root;PWD=1234;DATABASE=inventory;PORT=3306;' +
+      'SERVER=localhost;UID=root;PWD=1234;DATABASE=inventory;PORT=3307;' +
       'COLUMN_SIZE_S32=1";Initial Catalog=inventory'
     LoginPrompt = False
     Left = 440
