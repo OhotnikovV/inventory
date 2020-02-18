@@ -50,6 +50,7 @@ type
     Label10: TLabel;
     Button4: TButton;
     Button5: TButton;
+    Panel2: TPanel;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);

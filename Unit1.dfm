@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = #1055#1088#1086#1075#1088#1072#1084#1084#1072' '#1080#1085#1074#1077#1085#1090#1072#1088#1080#1079#1072#1094#1080#1080
-  ClientHeight = 571
+  ClientHeight = 533
   ClientWidth = 797
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,17 +18,19 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 797
-    Height = 571
-    ActivePage = TabSheet1
+    Height = 533
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
+    ExplicitHeight = 571
     object TabSheet1: TTabSheet
       Caption = #1050#1086#1084#1087#1100#1102#1090#1077#1088#1099
+      ExplicitHeight = 543
       object DBGrid1: TDBGrid
         Left = 0
         Top = 0
         Width = 789
-        Height = 312
+        Height = 274
         Align = alClient
         DataSource = DataSourceComp
         TabOrder = 0
@@ -40,11 +42,12 @@ object Form1: TForm1
       end
       object Panel1: TPanel
         Left = 0
-        Top = 312
+        Top = 274
         Width = 789
         Height = 231
         Align = alBottom
         TabOrder = 1
+        ExplicitTop = 312
         object PageControl2: TPageControl
           Left = 1
           Top = 1
@@ -262,11 +265,12 @@ object Form1: TForm1
     object TabSheet2: TTabSheet
       Caption = #1051#1086#1075#1080
       ImageIndex = 1
+      ExplicitHeight = 543
       object DBGrid2: TDBGrid
         Left = 0
         Top = 0
         Width = 789
-        Height = 543
+        Height = 240
         Align = alClient
         DataSource = DataSourceLogs
         TabOrder = 0
@@ -275,6 +279,14 @@ object Form1: TForm1
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
+      end
+      object Panel2: TPanel
+        Left = 0
+        Top = 240
+        Width = 789
+        Height = 265
+        Align = alBottom
+        TabOrder = 1
       end
     end
   end
