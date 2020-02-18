@@ -19,10 +19,9 @@ object Form1: TForm1
     Top = 0
     Width = 797
     Height = 533
-    ActivePage = TabSheet2
+    ActivePage = TabSheet6
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 571
     object TabSheet1: TTabSheet
       Caption = #1050#1086#1084#1087#1100#1102#1090#1077#1088#1099
       ExplicitHeight = 543
@@ -289,6 +288,29 @@ object Form1: TForm1
         TabOrder = 1
       end
     end
+    object TabSheet6: TTabSheet
+      Caption = #1042' '#1089#1077#1090#1080
+      ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 28
+      object ListBox1: TListBox
+        Left = 24
+        Top = 32
+        Width = 233
+        Height = 209
+        ItemHeight = 13
+        TabOrder = 0
+      end
+      object Button6: TButton
+        Left = 104
+        Top = 255
+        Width = 75
+        Height = 25
+        Caption = 'Button6'
+        TabOrder = 1
+        OnClick = Button6Click
+      end
+    end
   end
   object ADOConnection1: TADOConnection
     Connected = True
@@ -298,40 +320,49 @@ object Form1: TForm1
       'SERVER=localhost;UID=root;PWD=1234;DATABASE=inventory;PORT=3306;' +
       'COLUMN_SIZE_S32=1";Initial Catalog=inventory'
     LoginPrompt = False
-    Left = 440
-    Top = 392
+    Left = 552
+    Top = 72
   end
   object ADOQuery1: TADOQuery
     Connection = ADOConnection1
     CursorType = ctStatic
     Parameters = <>
-    Left = 520
-    Top = 392
+    Left = 552
+    Top = 128
   end
   object DataSourceComp: TDataSource
     DataSet = ADOTableComp
-    Left = 632
-    Top = 200
+    Left = 728
+    Top = 72
   end
   object ADOTableComp: TADOTable
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     TableName = 'computers'
-    Left = 632
-    Top = 256
+    Left = 728
+    Top = 128
   end
   object DataSourceLogs: TDataSource
     DataSet = ADOTableLogs
-    Left = 528
-    Top = 200
+    Left = 648
+    Top = 72
   end
   object ADOTableLogs: TADOTable
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     TableName = 'logs'
-    Left = 528
-    Top = 256
+    Left = 648
+    Top = 128
+  end
+  object IdIcmpClient1: TIdIcmpClient
+    Protocol = 1
+    ProtocolIPv6 = 0
+    IPVersion = Id_IPv4
+    PacketSize = 1024
+    OnReply = IdIcmpClient1Reply
+    Left = 552
+    Top = 184
   end
 end

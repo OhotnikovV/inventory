@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Data.Win.ADODB, Data.DB,
-  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.DBCtrls;
+  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.DBCtrls, IdIcmpClient,
+  IdBaseComponent, IdComponent, IdRawBase, IdRawClient;
 
 type
   TForm1 = class(TForm)
@@ -51,6 +52,10 @@ type
     Button4: TButton;
     Button5: TButton;
     Panel2: TPanel;
+    TabSheet6: TTabSheet;
+    IdIcmpClient1: TIdIcmpClient;
+    ListBox1: TListBox;
+    Button6: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -58,6 +63,9 @@ type
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
+    procedure IdIcmpClient1Reply(ASender: TComponent;
+      const AReplyStatus: TReplyStatus);
+    procedure Button6Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -129,6 +137,14 @@ begin
   Edit4.Clear; Edit5.Clear; Edit6.Clear; Edit8.Clear;
 end;
 
+procedure TForm1.Button6Click(Sender: TObject);
+begin
+  IdIcmpClient1.Host:='127.0.0.1';
+  IdIcmpClient1.ReceiveTimeout:=1000;
+  IdIcmpClient1.Ping('32');
+  //Caption:=IntToStr(IdIcmpClient1.ReplyStatus.MsRoundTripTime);
+end;
+
 procedure TForm1.DBLookupComboBox1Click(Sender: TObject);
 begin
   Edit4.Text:=ADOTableComp.FieldByName('MAC_address').AsString;
@@ -141,6 +157,18 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
    ADOTableComp.Active:=false;
    ADOTableComp.Active:=true;
+end;
+
+procedure TForm1.IdIcmpClient1Reply(ASender: TComponent;
+  const AReplyStatus: TReplyStatus);
+begin
+  try
+    if IdIcmpClient1.Host=AReplyStatus.FromIpAddress then
+     ListBox1.Items.Add(AReplyStatus.FromIpAddress);
+   except
+    on e:Exception do
+     //-//-//-//-//-//-//
+   end;
 end;
 
 end.
