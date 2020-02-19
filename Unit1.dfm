@@ -19,12 +19,13 @@ object Form1: TForm1
     Top = 0
     Width = 797
     Height = 533
-    ActivePage = TabSheet6
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
+    ExplicitLeft = 16
+    ExplicitTop = 40
     object TabSheet1: TTabSheet
       Caption = #1050#1086#1084#1087#1100#1102#1090#1077#1088#1099
-      ExplicitHeight = 543
       object DBGrid1: TDBGrid
         Left = 0
         Top = 0
@@ -46,7 +47,6 @@ object Form1: TForm1
         Height = 231
         Align = alBottom
         TabOrder = 1
-        ExplicitTop = 312
         object PageControl2: TPageControl
           Left = 1
           Top = 1
@@ -264,7 +264,6 @@ object Form1: TForm1
     object TabSheet2: TTabSheet
       Caption = #1051#1086#1075#1080
       ImageIndex = 1
-      ExplicitHeight = 543
       object DBGrid2: TDBGrid
         Left = 0
         Top = 0
@@ -286,13 +285,28 @@ object Form1: TForm1
         Height = 265
         Align = alBottom
         TabOrder = 1
+        ExplicitTop = 246
+        object Label11: TLabel
+          Left = 8
+          Top = 80
+          Width = 37
+          Height = 13
+          Caption = 'Label11'
+          OnClick = Label11Click
+        end
+        object Button7: TButton
+          Left = 8
+          Top = 24
+          Width = 75
+          Height = 25
+          Caption = #1055#1080#1085#1075
+          TabOrder = 0
+        end
       end
     end
     object TabSheet6: TTabSheet
       Caption = #1042' '#1089#1077#1090#1080
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 28
       object ListBox1: TListBox
         Left = 24
         Top = 32

@@ -56,6 +56,8 @@ type
     IdIcmpClient1: TIdIcmpClient;
     ListBox1: TListBox;
     Button6: TButton;
+    Button7: TButton;
+    Label11: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -66,6 +68,7 @@ type
     procedure IdIcmpClient1Reply(ASender: TComponent;
       const AReplyStatus: TReplyStatus);
     procedure Button6Click(Sender: TObject);
+    procedure Label11Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -142,7 +145,6 @@ begin
   IdIcmpClient1.Host:='127.0.0.1';
   IdIcmpClient1.ReceiveTimeout:=1000;
   IdIcmpClient1.Ping('32');
-  //Caption:=IntToStr(IdIcmpClient1.ReplyStatus.MsRoundTripTime);
 end;
 
 procedure TForm1.DBLookupComboBox1Click(Sender: TObject);
@@ -169,6 +171,19 @@ begin
     on e:Exception do
      //-//-//-//-//-//-//
    end;
+end;
+
+procedure TForm1.Label11Click(Sender: TObject);
+var
+  s:string;
+begin
+  ADOQuery1.Close;
+  ADOQuery1.SQL.Clear;
+  ADOQuery1.SQL.Add('SELECT COUNT(*) FROM computers;');
+  ADOQuery1.ExecSQL;
+  ADOQuery1.Open;
+  s:=ADOQuery1.FieldByName('COUNT(*)').AsString;
+  Label11.Caption:=s;
 end;
 
 end.
