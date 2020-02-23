@@ -56,6 +56,7 @@ type
     Button6: TButton;
     Button7: TButton;
     Memo1: TMemo;
+    Label11: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -152,10 +153,36 @@ begin
 end;
 
 //Запустить пинг
-procedure TForm1.Button6Click(Sender: TObject);
+{procedure TForm1.Button6Click(Sender: TObject);
 begin
   CmdThread:= TCmdThread.Create('ping 192.168.100.1 -t');
   CmdThread.OnCmdLine:= OnCmdLine;
+end;}
+
+//Запустить пинг
+procedure TForm1.Button6Click(Sender: TObject);
+var
+  i,count:integer;
+  IP:string;
+begin
+  ADOQuery1.Close; ADOQuery1.SQL.Clear;
+  ADOQuery1.SQL.Add('SELECT COUNT(*) FROM computers;');
+  ADOQuery1.ExecSQL; ADOQuery1.Open;
+  count:=StrToInt(ADOQuery1.FieldByName('COUNT(*)').AsString);
+  for i := 1 to count do
+  begin
+    ADOQuery1.Close;
+    ADOQuery1.SQL.Clear;
+    ADOQuery1.SQL.Add('SELECT IP FROM computers WHERE id='+IntToStr(count));
+    ADOQuery1.ExecSQL;
+    ADOQuery1.Open;
+    IP:=ADOQuery1.FieldByName('ip').AsString;
+    label11.Caption:=IP;
+    CmdThread:= TCmdThread.Create('ping '+IP);
+    CmdThread.OnCmdLine:= OnCmdLine;
+
+  end;
+
 end;
 
 //Остановить пинг
