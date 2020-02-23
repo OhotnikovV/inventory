@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Data.Win.ADODB, Data.DB,
   Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.DBCtrls, IdIcmpClient,
-  IdBaseComponent, IdComponent, IdRawBase, IdRawClient;
+  IdBaseComponent, IdComponent, IdRawBase, IdRawClient, UCmdLine;
 
 type
   TForm1 = class(TForm)
@@ -53,11 +53,9 @@ type
     Button5: TButton;
     Panel2: TPanel;
     TabSheet6: TTabSheet;
-    IdIcmpClient1: TIdIcmpClient;
-    ListBox1: TListBox;
     Button6: TButton;
     Button7: TButton;
-    Label11: TLabel;
+    Memo1: TMemo;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -65,23 +63,26 @@ type
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
-    procedure IdIcmpClient1Reply(ASender: TComponent;
-      const AReplyStatus: TReplyStatus);
     procedure Button6Click(Sender: TObject);
-    procedure Label11Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
   private
     { Private declarations }
   public
-    { Public declarations }
+    procedure OnCmdLine(Sender: TObject);
   end;
 
 var
   Form1: TForm1;
+  n:string;
 
 implementation
 
 {$R *.dfm}
 
+var
+  CmdThread: TCmdThread;
+
+// Кнопка "Добавить"
 procedure TForm1.Button1Click(Sender: TObject);
 var
   str:string;
@@ -101,12 +102,13 @@ begin
   Edit1.Clear; Edit2.Clear; Edit3.Clear; Edit7.Clear;
 end;
 
+// Кнопка "Изменить"
 procedure TForm1.Button2Click(Sender: TObject);
 var
   str:string;
 begin
   ADOQuery1.SQL.Clear;
-  // вводим запрос
+
   str := 'update computers set MAC_address='''+Edit4.Text+''', IP='''+Edit8.Text+''', InventoryNumber='+
   Edit5.Text+', Location='''+Edit6.Text+''', LastChanges=now() Where  ID='+DBLookupComboBox1.Text;
 
@@ -117,6 +119,7 @@ begin
   ADOTableComp.open;
 end;
 
+// Кнопка "Удалить"
 procedure TForm1.Button3Click(Sender: TObject);
 var
   str:string;
@@ -130,23 +133,39 @@ begin
   ADOTableComp.open;
 end;
 
+// Кнопка "Очистить"
 procedure TForm1.Button4Click(Sender: TObject);
 begin
   Edit1.Clear; Edit2.Clear; Edit3.Clear; Edit7.Clear;
 end;
 
+// Кнопка "Очистить"
 procedure TForm1.Button5Click(Sender: TObject);
 begin
   Edit4.Clear; Edit5.Clear; Edit6.Clear; Edit8.Clear;
 end;
 
-procedure TForm1.Button6Click(Sender: TObject);
+//Получение данных в Memo
+procedure TForm1.OnCmdLine(Sender: TObject);
 begin
-  IdIcmpClient1.Host:='127.0.0.1';
-  IdIcmpClient1.ReceiveTimeout:=1000;
-  IdIcmpClient1.Ping('32');
+  Memo1.Lines.add(TCmdThread(Sender).OutCmdLine);
 end;
 
+//Запустить пинг
+procedure TForm1.Button6Click(Sender: TObject);
+begin
+  CmdThread:= TCmdThread.Create('ping 192.168.100.1 -t');
+  CmdThread.OnCmdLine:= OnCmdLine;
+end;
+
+//Остановить пинг
+procedure TForm1.Button7Click(Sender: TObject);
+begin
+  if (CmdThread <> nil)and(not CmdThread.Stoped) then
+  CmdThread.Stop;
+end;
+
+// Заполенение edit записями из таблицы
 procedure TForm1.DBLookupComboBox1Click(Sender: TObject);
 begin
   Edit4.Text:=ADOTableComp.FieldByName('MAC_address').AsString;
@@ -161,29 +180,5 @@ begin
    ADOTableComp.Active:=true;
 end;
 
-procedure TForm1.IdIcmpClient1Reply(ASender: TComponent;
-  const AReplyStatus: TReplyStatus);
-begin
-  try
-    if IdIcmpClient1.Host=AReplyStatus.FromIpAddress then
-     ListBox1.Items.Add(AReplyStatus.FromIpAddress);
-   except
-    on e:Exception do
-     //-//-//-//-//-//-//
-   end;
-end;
-
-procedure TForm1.Label11Click(Sender: TObject);
-var
-  s:string;
-begin
-  ADOQuery1.Close;
-  ADOQuery1.SQL.Clear;
-  ADOQuery1.SQL.Add('SELECT COUNT(*) FROM computers;');
-  ADOQuery1.ExecSQL;
-  ADOQuery1.Open;
-  s:=ADOQuery1.FieldByName('COUNT(*)').AsString;
-  Label11.Caption:=s;
-end;
 
 end.

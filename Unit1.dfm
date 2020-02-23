@@ -19,13 +19,15 @@ object Form1: TForm1
     Top = 0
     Width = 797
     Height = 533
-    ActivePage = TabSheet2
+    ActivePage = TabSheet6
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 16
-    ExplicitTop = 40
     object TabSheet1: TTabSheet
       Caption = #1050#1086#1084#1087#1100#1102#1090#1077#1088#1099
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DBGrid1: TDBGrid
         Left = 0
         Top = 0
@@ -52,11 +54,15 @@ object Form1: TForm1
           Top = 1
           Width = 787
           Height = 229
-          ActivePage = TabSheet3
+          ActivePage = TabSheet4
           Align = alClient
           TabOrder = 0
           object TabSheet3: TTabSheet
             Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Label1: TLabel
               Left = 11
               Top = 3
@@ -135,6 +141,10 @@ object Form1: TForm1
           object TabSheet4: TTabSheet
             Caption = #1048#1079#1084#1077#1085#1080#1090#1100
             ImageIndex = 1
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Label4: TLabel
               Left = 11
               Top = 49
@@ -231,6 +241,10 @@ object Form1: TForm1
           object TabSheet5: TTabSheet
             Caption = #1059#1076#1072#1083#1080#1090#1100
             ImageIndex = 2
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Label10: TLabel
               Left = 11
               Top = 3
@@ -285,44 +299,38 @@ object Form1: TForm1
         Height = 265
         Align = alBottom
         TabOrder = 1
-        ExplicitTop = 246
-        object Label11: TLabel
-          Left = 8
-          Top = 80
-          Width = 37
-          Height = 13
-          Caption = 'Label11'
-          OnClick = Label11Click
-        end
-        object Button7: TButton
-          Left = 8
-          Top = 24
-          Width = 75
-          Height = 25
-          Caption = #1055#1080#1085#1075
-          TabOrder = 0
-        end
       end
     end
     object TabSheet6: TTabSheet
       Caption = #1042' '#1089#1077#1090#1080
       ImageIndex = 2
-      object ListBox1: TListBox
-        Left = 24
-        Top = 32
-        Width = 233
-        Height = 209
-        ItemHeight = 13
-        TabOrder = 0
-      end
       object Button6: TButton
-        Left = 104
-        Top = 255
+        Left = 56
+        Top = 295
         Width = 75
         Height = 25
-        Caption = 'Button6'
-        TabOrder = 1
+        Caption = #1047#1072#1087#1091#1089#1090#1080#1090#1100
+        TabOrder = 0
         OnClick = Button6Click
+      end
+      object Button7: TButton
+        Left = 137
+        Top = 295
+        Width = 75
+        Height = 25
+        Caption = #1054#1089#1090#1072#1085#1086#1074#1080#1090#1100
+        TabOrder = 1
+        OnClick = Button7Click
+      end
+      object Memo1: TMemo
+        Left = 16
+        Top = 16
+        Width = 473
+        Height = 257
+        Lines.Strings = (
+          '')
+        ScrollBars = ssVertical
+        TabOrder = 2
       end
     end
   end
@@ -369,14 +377,5 @@ object Form1: TForm1
     TableName = 'logs'
     Left = 648
     Top = 128
-  end
-  object IdIcmpClient1: TIdIcmpClient
-    Protocol = 1
-    ProtocolIPv6 = 0
-    IPVersion = Id_IPv4
-    PacketSize = 1024
-    OnReply = IdIcmpClient1Reply
-    Left = 552
-    Top = 184
   end
 end
