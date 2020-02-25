@@ -14,7 +14,7 @@ type
     FStoped: Boolean;
   public
   protected
-   procedure DoCmdLine; virtual;
+    procedure DoCmdLine; virtual;
   public
   procedure Execute; Override;
   constructor Create(cmdLine: string); virtual;

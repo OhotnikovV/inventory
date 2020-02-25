@@ -173,14 +173,13 @@ begin
   begin
     ADOQuery1.Close;
     ADOQuery1.SQL.Clear;
-    ADOQuery1.SQL.Add('SELECT IP FROM computers WHERE id='+IntToStr(count));
+    ADOQuery1.SQL.Add('SELECT IP FROM computers WHERE id='+IntToStr(i));
     ADOQuery1.ExecSQL;
     ADOQuery1.Open;
     IP:=ADOQuery1.FieldByName('ip').AsString;
     label11.Caption:=IP;
     CmdThread:= TCmdThread.Create('ping '+IP);
     CmdThread.OnCmdLine:= OnCmdLine;
-
   end;
 
 end;

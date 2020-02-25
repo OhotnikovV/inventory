@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = #1055#1088#1086#1075#1088#1072#1084#1084#1072' '#1080#1085#1074#1077#1085#1090#1072#1088#1080#1079#1072#1094#1080#1080
-  ClientHeight = 533
+  ClientHeight = 549
   ClientWidth = 797
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,17 +18,19 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 797
-    Height = 533
-    ActivePage = TabSheet6
+    Height = 549
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
+    ExplicitHeight = 533
     object TabSheet1: TTabSheet
       Caption = #1050#1086#1084#1087#1100#1102#1090#1077#1088#1099
+      ExplicitHeight = 505
       object DBGrid1: TDBGrid
         Left = 0
         Top = 0
         Width = 789
-        Height = 274
+        Height = 290
         Align = alClient
         DataSource = DataSourceComp
         TabOrder = 0
@@ -40,11 +42,12 @@ object Form1: TForm1
       end
       object Panel1: TPanel
         Left = 0
-        Top = 274
+        Top = 290
         Width = 789
         Height = 231
         Align = alBottom
         TabOrder = 1
+        ExplicitTop = 274
         object PageControl2: TPageControl
           Left = 1
           Top = 1
@@ -262,11 +265,12 @@ object Form1: TForm1
     object TabSheet2: TTabSheet
       Caption = #1051#1086#1075#1080
       ImageIndex = 1
+      ExplicitHeight = 505
       object DBGrid2: TDBGrid
         Left = 0
         Top = 0
         Width = 789
-        Height = 240
+        Height = 248
         Align = alClient
         DataSource = DataSourceLogs
         TabOrder = 0
@@ -278,51 +282,52 @@ object Form1: TForm1
       end
       object Panel2: TPanel
         Left = 0
-        Top = 240
+        Top = 248
         Width = 789
-        Height = 265
+        Height = 273
         Align = alBottom
         TabOrder = 1
+        object Label11: TLabel
+          Left = 288
+          Top = 252
+          Width = 37
+          Height = 13
+          Caption = 'Label11'
+        end
+        object Memo1: TMemo
+          Left = 0
+          Top = 6
+          Width = 473
+          Height = 257
+          Lines.Strings = (
+            '')
+          ScrollBars = ssVertical
+          TabOrder = 0
+        end
+        object Button6: TButton
+          Left = 624
+          Top = 240
+          Width = 75
+          Height = 25
+          Caption = #1047#1072#1087#1091#1089#1090#1080#1090#1100
+          TabOrder = 1
+          OnClick = Button6Click
+        end
+        object Button7: TButton
+          Left = 705
+          Top = 240
+          Width = 75
+          Height = 25
+          Caption = #1054#1089#1090#1072#1085#1086#1074#1080#1090#1100
+          TabOrder = 2
+          OnClick = Button7Click
+        end
       end
     end
     object TabSheet6: TTabSheet
       Caption = #1042' '#1089#1077#1090#1080
       ImageIndex = 2
-      object Label11: TLabel
-        Left = 288
-        Top = 304
-        Width = 37
-        Height = 13
-        Caption = 'Label11'
-      end
-      object Button6: TButton
-        Left = 56
-        Top = 295
-        Width = 75
-        Height = 25
-        Caption = #1047#1072#1087#1091#1089#1090#1080#1090#1100
-        TabOrder = 0
-        OnClick = Button6Click
-      end
-      object Button7: TButton
-        Left = 137
-        Top = 295
-        Width = 75
-        Height = 25
-        Caption = #1054#1089#1090#1072#1085#1086#1074#1080#1090#1100
-        TabOrder = 1
-        OnClick = Button7Click
-      end
-      object Memo1: TMemo
-        Left = 16
-        Top = 16
-        Width = 473
-        Height = 257
-        Lines.Strings = (
-          '')
-        ScrollBars = ssVertical
-        TabOrder = 2
-      end
+      ExplicitHeight = 505
     end
   end
   object ADOConnection1: TADOConnection
