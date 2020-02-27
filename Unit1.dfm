@@ -1,7 +1,8 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = #1055#1088#1086#1075#1088#1072#1084#1084#1072' '#1080#1085#1074#1077#1085#1090#1072#1088#1080#1079#1072#1094#1080#1080
+  ActiveControl = PageControl1
+  Caption = #1057#1077#1088#1074#1077#1088
   ClientHeight = 571
   ClientWidth = 797
   Color = clBtnFace
@@ -11,6 +12,7 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -277,6 +279,44 @@ object Form1: TForm1
         TitleFont.Style = []
       end
     end
+    object TabSheet6: TTabSheet
+      Caption = #1057#1086#1086#1073#1097#1077#1085#1080#1103
+      ImageIndex = 2
+      object Panel2: TPanel
+        Left = 0
+        Top = 0
+        Width = 789
+        Height = 543
+        Align = alClient
+        TabOrder = 0
+        object Memo1: TMemo
+          Left = 8
+          Top = 0
+          Width = 369
+          Height = 209
+          TabOrder = 0
+        end
+        object Button6: TButton
+          Left = 8
+          Top = 232
+          Width = 75
+          Height = 25
+          Caption = #1040#1082#1090#1080#1074'. '#1089#1077#1088#1074
+          TabOrder = 1
+          OnClick = Button6Click
+        end
+        object StatusBar1: TStatusBar
+          Left = 1
+          Top = 523
+          Width = 787
+          Height = 19
+          Panels = <
+            item
+              Width = 50
+            end>
+        end
+      end
+    end
   end
   object ADOConnection1: TADOConnection
     Connected = True
@@ -286,15 +326,15 @@ object Form1: TForm1
       'SERVER=localhost;UID=root;PWD=1234;DATABASE=inventory;PORT=3306;' +
       'COLUMN_SIZE_S32=1";Initial Catalog=inventory'
     LoginPrompt = False
-    Left = 440
-    Top = 392
+    Left = 712
+    Top = 200
   end
   object ADOQuery1: TADOQuery
     Connection = ADOConnection1
     CursorType = ctStatic
     Parameters = <>
-    Left = 520
-    Top = 392
+    Left = 712
+    Top = 264
   end
   object DataSourceComp: TDataSource
     DataSet = ADOTableComp
@@ -321,5 +361,20 @@ object Form1: TForm1
     TableName = 'logs'
     Left = 528
     Top = 256
+  end
+  object ClientSocket1: TClientSocket
+    Active = False
+    ClientType = ctNonBlocking
+    Port = 0
+    Left = 528
+    Top = 312
+  end
+  object ServerSocket1: TServerSocket
+    Active = False
+    Port = 0
+    ServerType = stNonBlocking
+    OnClientRead = ServerSocket1ClientRead
+    Left = 600
+    Top = 312
   end
 end

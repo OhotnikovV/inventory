@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Data.Win.ADODB, Data.DB,
-  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.DBCtrls;
+  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.DBCtrls,
+  System.Win.ScktComp;
 
 type
   TForm1 = class(TForm)
@@ -50,6 +51,13 @@ type
     Label10: TLabel;
     Button4: TButton;
     Button5: TButton;
+    ClientSocket1: TClientSocket;
+    ServerSocket1: TServerSocket;
+    TabSheet6: TTabSheet;
+    Panel2: TPanel;
+    Memo1: TMemo;
+    Button6: TButton;
+    StatusBar1: TStatusBar;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -57,6 +65,9 @@ type
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+    procedure ServerSocket1ClientRead(Sender: TObject;
+      Socket: TCustomWinSocket);
   private
     { Private declarations }
   public
@@ -128,6 +139,15 @@ begin
   Edit4.Clear; Edit5.Clear; Edit6.Clear; Edit8.Clear;
 end;
 
+procedure TForm1.Button6Click(Sender: TObject);
+begin
+  ServerSocket1.Port:= 64000; // указываем порт
+  ServerSocket1.Active:=True; // активируем наш сервер
+  ServerSocket1.Open; // запускаем
+  if ServerSocket1.Active then
+    Statusbar1.Panels.Items[0].Text:='Active and Open ServerSocket1 192.168.105.104';
+end;
+
 procedure TForm1.DBLookupComboBox1Click(Sender: TObject);
 begin
   Edit4.Text:=ADOTableComp.FieldByName('MAC_address').AsString;
@@ -140,6 +160,14 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
    ADOTableComp.Active:=false;
    ADOTableComp.Active:=true;
+end;
+
+
+procedure TForm1.ServerSocket1ClientRead(Sender: TObject;
+  Socket: TCustomWinSocket);
+begin
+  Memo1.Lines.Add(Socket.ReceiveText);
+  StatusBar1.Panels.Items[0].Text:=Socket.RemoteAddress;
 end;
 
 end.
